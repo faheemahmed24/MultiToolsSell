@@ -1,16 +1,163 @@
+
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
 <meta charset="UTF-8">
-<title>MultiToolsSell</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MultiTools</title>
+<style>
+body{font-family:Arial;margin:0;background:#f5f6fa}
+header{background:#2563eb;color:white;padding:20px;text-align:center}
+.container{width:90%;margin:auto;margin-top:20px}
+.card{background:white;border-radius:10px;padding:20px;margin-top:20px}
+textarea{width:100%;height:120px;margin-top:10px}
+button{padding:10px 15px;margin-top:10px;background:#2563eb;color:white;border:none;border-radius:6px;cursor:pointer}
+.result{background:#eef2ff;padding:10px;margin-top:10px;border-radius:6px}
+footer{text-align:center;padding:20px;margin-top:40px;color:#666}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px}
+</style>
 </head>
-
 <body>
 
-<div id="root"></div>
+<header>
+<h1>MultiTools</h1>
+<p>Free Online Tools</p>
+</header>
 
-<script type="module" src="/src/main.jsx"></script>
+<div class="container">
+
+<div class="grid">
+
+<div class="card">
+<h3>Word Counter</h3>
+<textarea id="wc_text"></textarea>
+<button onclick="wordCounter()">Count</button>
+<div class="result" id="wc_result"></div>
+</div>
+
+<div class="card">
+<h3>Reverse Text</h3>
+<textarea id="rev_text"></textarea>
+<button onclick="reverseText()">Reverse</button>
+<div class="result" id="rev_result"></div>
+</div>
+
+<div class="card">
+<h3>Uppercase Converter</h3>
+<textarea id="up_text"></textarea>
+<button onclick="upperText()">Convert</button>
+<div class="result" id="up_result"></div>
+</div>
+
+<div class="card">
+<h3>Lowercase Converter</h3>
+<textarea id="low_text"></textarea>
+<button onclick="lowerText()">Convert</button>
+<div class="result" id="low_result"></div>
+</div>
+
+<div class="card">
+<h3>Base64 Encode</h3>
+<textarea id="b64e_text"></textarea>
+<button onclick="b64encode()">Encode</button>
+<div class="result" id="b64e_result"></div>
+</div>
+
+<div class="card">
+<h3>Base64 Decode</h3>
+<textarea id="b64d_text"></textarea>
+<button onclick="b64decode()">Decode</button>
+<div class="result" id="b64d_result"></div>
+</div>
+
+<div class="card">
+<h3>URL Encode</h3>
+<textarea id="urlenc_text"></textarea>
+<button onclick="urlencode()">Encode</button>
+<div class="result" id="urlenc_result"></div>
+</div>
+
+<div class="card">
+<h3>URL Decode</h3>
+<textarea id="urldec_text"></textarea>
+<button onclick="urldecode()">Decode</button>
+<div class="result" id="urldec_result"></div>
+</div>
+
+<div class="card">
+<h3>JSON Formatter</h3>
+<textarea id="json_text"></textarea>
+<button onclick="jsonFormat()">Format</button>
+<div class="result" id="json_result"></div>
+</div>
+
+</div>
+
+</div>
+
+<footer>
+© 2026 MultiTools
+</footer>
+
+<script>
+
+function wordCounter(){
+let t=document.getElementById("wc_text").value.trim()
+let words=t? t.split(/\s+/).length:0
+let chars=t.length
+document.getElementById("wc_result").innerText="Words: "+words+" | Characters: "+chars
+}
+
+function reverseText(){
+let t=document.getElementById("rev_text").value
+document.getElementById("rev_result").innerText=t.split("").reverse().join("")
+}
+
+function upperText(){
+let t=document.getElementById("up_text").value
+document.getElementById("up_result").innerText=t.toUpperCase()
+}
+
+function lowerText(){
+let t=document.getElementById("low_text").value
+document.getElementById("low_result").innerText=t.toLowerCase()
+}
+
+function b64encode(){
+let t=document.getElementById("b64e_text").value
+document.getElementById("b64e_result").innerText=btoa(t)
+}
+
+function b64decode(){
+let t=document.getElementById("b64d_text").value
+try{
+document.getElementById("b64d_result").innerText=atob(t)
+}catch{
+document.getElementById("b64d_result").innerText="Invalid Base64"
+}
+}
+
+function urlencode(){
+let t=document.getElementById("urlenc_text").value
+document.getElementById("urlenc_result").innerText=encodeURIComponent(t)
+}
+
+function urldecode(){
+let t=document.getElementById("urldec_text").value
+document.getElementById("urldec_result").innerText=decodeURIComponent(t)
+}
+
+function jsonFormat(){
+let t=document.getElementById("json_text").value
+try{
+let obj=JSON.parse(t)
+document.getElementById("json_result").innerText=JSON.stringify(obj,null,2)
+}catch{
+document.getElementById("json_result").innerText="Invalid JSON"
+}
+}
+
+</script>
 
 </body>
 </html>
